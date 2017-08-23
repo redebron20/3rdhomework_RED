@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Batman!</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/monokai.min.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        
+        <h1>Batman Canvas Game</h1>
+
+        <canvas width="700" height="250" class="canvas"></canvas>
+
+        <section>
+            <h1>How to play</h1>
+            <ul>
+                <li><strong>Left arrow</strong>: start running!</li> 
+                <li><strong>Up arrow</strong>: jump!</li> 
+                <li><strong>Bottom arrow</strong>: stop!</li> 
+            </ul>
+        </section>
+
+        <section>
+            <h1>Your Task</h1>
+            <p>
+                Implement the following functions that will allow your <strong><a href="https://github.com/FEWDMaterials/BatmanGame_starter" target="_blank">starter code</a></strong> version of this game work properly. In other words, after implementing the methods outlined below, your Batman game should work exactly the same as the game displayed above.
+            </p>
+
+            <p>
+            You <strong>only</strong> need to work in <strong>javascript/implementation.js</strong>. You are free to look at the other files but they are mainly there to make the rest of the game work. The objective here is to show you how functions and proper implementations of (seemingly) simple functions can feed into a complex system that ultimately allow that system to work properly. Do <strong>NOT</strong> try to figure out how this game actually works on your own (feel free to ask me, I can also out together a quick lecture that describes it). If you try to figure out how the game works before implementing these functions, you will likely fail. The point of this exercise is to show you that often time, developers work in codebases that they do not completely understand. This is ok as long as you understand specifically how the feature that you are trying to implement should work. Good luck!
+            </p>
+        </section>
+
+        <section>
+            <h1><pre>moveBgLeft</pre></h1>
+            <p>
+            Use this function to determine Batman's running speed. You will get a value <strong>x</strong> that represents the current position of the canvas background. Your function will update that value by some number. If you increase your number, Batman will run "faster". If you decrease it, he will run slower. You want to return the <strong>x</strong> value with your number either added or subtracted. Here's a question: what is the significance of adding or subtracting on the background of your game? Experiment with both versions to find out.
+            </p>
+            <pre>
+                <code>
+/*
+    @function moveBgLeft
+    @param {number} x
+    @returns {number}
+    @desc return the input param minus 10 (or some other value that you like)
+*/
+function moveBgLeft() {}
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h1><pre>keyDownHandler</pre></h1>
+            <p>
+
+            This function runs a bunch of checks to determine which key ( or keys ) have been pressed. The <strong>keyCode</strong> is a number that is passed in to our function. When the user performs a <strong>keypress</strong>, the browser takes note of the key that was pressed (which the browser keeps track of in numerical form) and this is the value that we get passed in to the function. Take a look at <strong><a href="http://keycode.info/" target="_blank">this resource</a></strong> to get a sense of what value corresponds to which keypress. 
+
+            </p>
+            <p>
+            This function also has a list of relevant keys that it cares about. Specifically, the up, right, down, left and shift keys. Your objective is to check to see if the <strong>keyCode</strong> parameter is equal to the keycodes of any of those particular keys (you can determine the key value of each of these keys from the resource above). If the <strong>keyCode</strong> parameter *is* equal to the keycode of one of the particular keys we care about, that the value of that key variable (ie: <strong>rightArrowPressed</strong>) to true.
+            </p>
+
+            <p>
+            Internally, the game logic will query the value of these keys and based on it's truth state, initialize certain parts of the game (such as making Batman look like he is running or facilitate Batman's jump move). All you have to do (for now) is set the values of those keys to be true <strong>if</strong> the keyCode reflects the predefined key value for that key by the browser.
+            </p>
+
+            <pre>
+                <code>
+/*
+    @function keyDownHandler
+    @param {number} keyCode
+    @param {boolean} upArrowPressed
+    @param {boolean} rightArrowPressed
+    @param {boolean} downArrowPressed
+    @param {boolean} leftArrowPressed
+    @param {boolean} shiftKeyPressed 
+    @returns { object }
+    @desc returns all the above params but flips a switch setting val to true 
+*/
+function keyDownHandler( keyCode = 0, upArrowPressed = false, rightArrowPressed = false, downArrowPressed = false, leftArrowPressed = false, shiftKeyPressed = false ) {
+    // you need a bunch of if statements here...
+
+
+    return {
+        upArrowPressed,
+        rightArrowPressed,
+        downArrowPressed,
+        leftArrowPressed,
+        shiftKeyPressed
+    };
+}
+                </code>
+            </pre>
+        </section>
+
+        <section>
+            <h1><pre>keyUpHandler</pre></h1>
+
+            <p>
+            Same as above, but what we want to do is update our previous key variables to be <strong>false</strong>. The <strong>keyUpHandler</strong> runs when the user stops pressing a certain key. At this point, we want to flip the key values that were keyed up to be false. This will prevent all sorts of weird bugs, like Batman starting to glide forever everytime he jumps. To explore what would happen if this method was not implemented correctly, set every *<strong>ArrowPressed</strong> key to <strong>true</strong> and see what happens!
+            </p>
+
+            <p>
+            <strong>IMPORTANT NOTE</strong>: by default the *<strong>ArrowPressed</strong> are set to <strong>false</strong>. However, recall that these are just DEFAULT params and really, the game logic that is calling this function is actually passing in the values that you previous <strong>keyDownHandler</strong> function returned.
+            </p>
+            <pre>
+                <code>
+/*
+    @function keyUpHandler
+    @param {number} keyCode
+    @param {boolean} upArrowPressed
+    @param {boolean} rightArrowPressed
+    @param {boolean} downArrowPressed
+    @param {boolean} leftArrowPressed
+    @param {boolean} shiftKeyPressed 
+    @returns { object }
+    @desc returns all the above params but flips a switch setting val to false
+*/
+function keyUpHandler( keyCode = 0, upArrowPressed = false, rightArrowPressed = false, downArrowPressed = false, leftArrowPressed = false, shiftKeyPressed = false ) {
+    // you need a bunch of if statements here...
+
+
+    return {
+        upArrowPressed,
+        rightArrowPressed,
+        downArrowPressed,
+        leftArrowPressed,
+        shiftKeyPressed
+    };
+}
+                </code>
+            </pre>
+
+        </section>
+
+        <section>
+            <h1><pre>shouldJumpNow</pre></h1>
+
+            <p>
+            This function is passed in one arg, <strong>y</strong>, which is Batman's vertical coordinate as he runs along the streets of Gotham. This function should determine how high Batman can jump up when he chooses to. Remember to consider which operation to use (+ or -) and what to return to the game logic. Also, what could you do to help Batman's verticals be random?
+            </p>
+
+            <pre>
+                <code>
+/*
+    @function shouldJumpNow
+    @param {number} y
+    @returns {number}
+    @desc subtracts a value from y to simulate jump
+*/
+function shouldJumpNow() {}
+                </code>
+            </pre>
+        </section>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+
+        <script src="javascript/Utils.js"></script>
+        <script src="javascript/GameLoop.js"></script>
+        <script src="javascript/Game.js"></script>
+        <script src="javascript/app.js"></script>
+        <script src="javascript/implementation.js"></script>
+        <script>
+            const all = document.querySelectorAll('pre code');
+            Array.from( all ).forEach((el) => {
+                hljs.highlightBlock( el );
+            });
+        </script>
+    </body>
+</html>
